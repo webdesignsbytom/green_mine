@@ -37,6 +37,9 @@ module.exports = {
       width: {
         eighty: '80%',
       },
+      height: {
+        h1: 'calc(100vh - 40px)',
+      },
       fontFamily: {
         poppins: ['Poppins', 'sans-serif'],
       },
