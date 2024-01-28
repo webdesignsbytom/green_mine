@@ -71,10 +71,6 @@ function HomePage() {
               </div>
             </article>
           </section>
-
-          {/* Miner */}
-          {/* <MiningComponent /> */}
-          {/* <MiningComp2 /> */}
         </main>
       </div>
     </div>
