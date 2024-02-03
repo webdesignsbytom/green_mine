@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from 'react';
 // Images
 import TreeBG from '../../assets/images/pages/404cat.png';
 // Components
-import Navbar from '../../components/nav/Navbar';
 // Context
 import { ToggleContext } from '../../context/ToggleContext';
 
@@ -16,7 +15,6 @@ function Error404() {
   return (
     <div className='h-screen overflow-hidden grid bg-gray-50 dark:bg-black dark:text-gray-100'>
       <section className='grid h-full overflow-hidden grid-rows-reg lg:grid-rows-none lg:grid-cols-reg'>
-        <Navbar />
         <div className='font-poppins'>
           <main className='relative h-full w-full'>
             <section className='grid absolute w-full text-center h-full items-center justify-center z-10'>
